@@ -1,33 +1,18 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
-
-let result
-
-(async function example() {
+async function example () {
     let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('https://www.google.com');
+    await driver.findElement(By.name('q')).sendKeys('some text', Key.RETURN,);
+
     try {
-
-        // Navigate to Url
-        await driver.get('https://www.google.com');
-
-        // Enter text "cheese" and perform keyboard action "Enter"
-        await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
-        await driver.wait(until.titleIs('webdriver - Пошук Google'), 7000);
-        result = await driver.wait(until.elementLocated(By.css('h1')), 7000); // get url 
-    
-
+        let nazar = await driver.findElement(By.id('result-stats'), 6000);
         
-        //console.log(await result.getAttribute('textContent'));
-
-        if(result = 'webdriver - Пошук Google') {
-                 console.log('Test passed');
-               } else {
-                   console.log(result.getText());
-                 console.log('Test failed');
-               }  
-    }
-    finally{
+        console.log('Test passed');
+    } catch (err) {
+        console.log('Test failed');
+    } finally {
         driver.quit();
     }
-})();
-
-// some text
+    
+}
+example();
