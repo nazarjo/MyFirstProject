@@ -5,7 +5,7 @@ async function example () {
     await driver.findElement(By.name('q')).sendKeys('some text', Key.RETURN,);
 
     try {
-        let nazar = await driver.findElement(By.id('result-stats'), 6000);
+        let nazar = await driver.findElement(By.id('result-stats'),);
         
         console.log('Test passed');
     } catch (err) {
@@ -16,3 +16,6 @@ async function example () {
     
 }
 example();
+
+
+// test for PR
